@@ -36,7 +36,7 @@ func main() {
 		"Name of product you eaten")
 
 	var mealWeightInput string
-	flag.StringVar(&mealWeightInput, "w", "0",
+	flag.StringVar(&mealWeightInput, "w", "100",
 		"weight of eaten meal in grams")
 
 	var mealFactsInput string
