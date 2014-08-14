@@ -14,7 +14,7 @@ my daily nutrition needs. I use this tool to know it.
 -w meal weight  
 -d daily nutrition needs  
 
-I get the results  
+I get the results:  
 
 `snickers/95.00/7.92/30.08/15.65/20.35`  
 
