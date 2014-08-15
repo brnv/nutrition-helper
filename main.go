@@ -44,21 +44,19 @@ func main() {
 	facts = parseFacts(reFacts.FindStringSubmatch(nutritionFacts))
 	norm = parseFacts(reFacts.FindStringSubmatch(dailyNorm))
 	facts.Weight = parseFloat(weight)
-	norm.Weight = 100
 
 	fmt.Printf("%s", calculatePercentage(facts, norm))
 }
 
 func calculatePercentage(part NutritionFacts, from NutritionFacts) NutritionFacts {
 	percentage := func(weight float64, fact float64, dailyFact float64) float64 {
-		return weight * fact / 100 / dailyFact * 100
+		return fact / 100 * weight / dailyFact * 100
 	}
 	calculated := NutritionFacts{}
 	calculated.Protein = percentage(part.Weight, part.Protein, from.Protein)
 	calculated.Fat = percentage(part.Weight, part.Fat, from.Fat)
 	calculated.Carbohydrate = percentage(part.Weight, part.Carbohydrate, from.Carbohydrate)
 	calculated.Calories = percentage(part.Weight, part.Calories, from.Calories)
-
 	return calculated
 }
 
