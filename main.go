@@ -19,7 +19,7 @@ type (
 )
 
 func (f NutritionFacts) String() string {
-	return fmt.Sprintf("%2.2f/%2.2f/%2.2f/%2.2f\n", f.Protein, f.Fat,
+	return fmt.Sprintf("%2.2f/%2.2f/%2.2f/%2.2f/\n", f.Protein, f.Fat,
 		f.Carbohydrate, f.Calories)
 }
 
