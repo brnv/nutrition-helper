@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/brnv/nutrition-helper/calculator"
+	"github.com/brnv/nutrition-helper/nutrition"
 	"github.com/gocraft/web"
 )
 
@@ -14,12 +13,8 @@ type Context struct {
 
 func handlePost(w web.ResponseWriter, r *web.Request) {
 	r.ParseForm()
-	var meal struct {
-		name  string
-		facts calculator.NutritionFacts
-	}
-	meal.name = r.FormValue("productInput")
-	fmt.Fprint(w, meal)
+	nutrition.Eat(r.Form)
+	http.Redirect(w, r.Request, "/", http.StatusFound)
 }
 
 func main() {
