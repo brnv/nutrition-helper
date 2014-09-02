@@ -7,11 +7,11 @@ import (
 )
 
 type NutritionFacts struct {
-	Protein      float64
-	Fat          float64
-	Carbohydrate float64
-	Calories     float64
-	Weight       float64
+	Protein      float64 `json:protein`
+	Fat          float64 `json:fat`
+	Carbohydrate float64 `json:carbohydrates`
+	Calories     float64 `json:calories`
+	Weight       float64 `json:weight`
 }
 
 func (f NutritionFacts) String() string {
