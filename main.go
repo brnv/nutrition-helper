@@ -36,8 +36,7 @@ func handleSettings(w web.ResponseWriter, r *web.Request) {
 }
 
 func handleEat(w web.ResponseWriter, r *web.Request) {
-	r.ParseForm()
-	nutrition.Eat(r.Form)
+	nutrition.Eat(r)
 	http.Redirect(w, r.Request, "/", http.StatusFound)
 }
 
@@ -52,7 +51,7 @@ func main() {
 		Get("/settings", handleSettings).
 		Post("/eat", handleEat)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8084", router))
 }
 
 func templateIndex() *template.Template {
