@@ -1,2 +1,0 @@
-go run main.go -f "3.2/4/5/70" -w 360 -d "90/90/340/2400" >> `date +%d%m%Y`.txt
-./stat.sh 16082014.txt

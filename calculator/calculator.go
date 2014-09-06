@@ -1,49 +1,26 @@
 package calculator
 
-import (
-	"fmt"
-	"log"
-	"strconv"
-)
+import "github.com/brnv/nutrition-helper/nutrition"
 
-type NutritionFacts struct {
-	Protein      float64 `json:protein`
-	Fat          float64 `json:fat`
-	Carbohydrate float64 `json:carbohydrates`
-	Calories     float64 `json:calories`
-	Weight       float64 `json:weight`
-}
+var weight float64
 
-func (f NutritionFacts) String() string {
-	return fmt.Sprintf("%2.2f/%2.2f/%2.2f/%2.2f/", f.Protein, f.Fat,
-		f.Carbohydrate, f.Calories)
-}
+func DailyPercentage(consumedWeight float64, consumed nutrition.Facts,
+	needed nutrition.Facts) nutrition.Facts {
 
-func CalculatePercentage(part NutritionFacts, from NutritionFacts) NutritionFacts {
-	percentage := func(weight float64, fact float64, dailyFact float64) float64 {
-		return fact / 100 * weight / dailyFact * 100
-	}
-	calculated := NutritionFacts{}
-	calculated.Protein = percentage(part.Weight, part.Protein, from.Protein)
-	calculated.Fat = percentage(part.Weight, part.Fat, from.Fat)
-	calculated.Carbohydrate = percentage(part.Weight, part.Carbohydrate, from.Carbohydrate)
-	calculated.Calories = percentage(part.Weight, part.Calories, from.Calories)
-	return calculated
-}
+	setWeight(consumedWeight)
 
-func ParseFacts(from []string) NutritionFacts {
-	return NutritionFacts{
-		Protein:      ParseFloat(from[1]),
-		Fat:          ParseFloat(from[2]),
-		Carbohydrate: ParseFloat(from[3]),
-		Calories:     ParseFloat(from[4]),
+	return nutrition.Facts{
+		Proteins:     getPercentage(consumed.Proteins, needed.Proteins),
+		Fats:         getPercentage(consumed.Fats, needed.Fats),
+		Carbohydrate: getPercentage(consumed.Carbohydrate, needed.Carbohydrate),
+		Calories:     getPercentage(consumed.Calories, needed.Calories),
 	}
 }
 
-func ParseFloat(str string) float64 {
-	float, err := strconv.ParseFloat(str, 64)
-	if err != nil {
-		log.Println("[error]", err)
-	}
-	return float
+func getPercentage(consumed float64, needed float64) float64 {
+	return consumed / 100 * weight / needed * 100
+}
+
+func setWeight(value float64) {
+	weight = value
 }
