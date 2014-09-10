@@ -1,8 +1,8 @@
 package nutrition
 
 type Facts struct {
-	Proteins     float64 `json:protein`
-	Fats         float64 `json:fat`
-	Carbohydrate float64 `json:carbohydrates`
-	Calories     float64 `json:calories`
+	Proteins      float64 `json:Proteins`
+	Fats          float64 `json:Fats`
+	Carbohydrates float64 `json:Carbohydrates`
+	Calories      float64 `json:Calories`
 }
