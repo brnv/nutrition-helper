@@ -10,10 +10,10 @@ func DailyPercentage(consumedWeight float64, consumed nutrition.Facts,
 	setWeight(consumedWeight)
 
 	return nutrition.Facts{
-		Proteins:     getPercentage(consumed.Proteins, needed.Proteins),
-		Fats:         getPercentage(consumed.Fats, needed.Fats),
-		Carbohydrate: getPercentage(consumed.Carbohydrate, needed.Carbohydrate),
-		Calories:     getPercentage(consumed.Calories, needed.Calories),
+		Proteins:      getPercentage(consumed.Proteins, needed.Proteins),
+		Fats:          getPercentage(consumed.Fats, needed.Fats),
+		Carbohydrates: getPercentage(consumed.Carbohydrates, needed.Carbohydrates),
+		Calories:      getPercentage(consumed.Calories, needed.Calories),
 	}
 }
 
